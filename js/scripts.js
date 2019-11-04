@@ -56,15 +56,19 @@ function Contact(firstName, lastName, phoneNumber) {
 // User Interface Logic
 
 var addressBook = new AddressBook();
-// his is a global variable because it's declared at the 'top level' of our file.
+// this is a global variable because it's declared at the 'top level' of our file.
 
 
 
 function displayContactDetails(addressBookToDisplay) {
   var contactsList = $("ul#contacts");
+  // First we save our jQuery ul#contacts element in a variable called contactsList. This is best practice because it takes jQuery time to query the DOM and find ul#contacts. Saving it in a variable prevents it from later querying the DOM again, if we eventually use the selector multiple times. This is much more efficient.
   var htmlForContactInfo = "";
   addressBookToDisplay.contacts.forEach(function(contact) {
     htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
+    // ^^^^We assign each Contact to a <li> with a dynamic id matching the Contact's id property. This is very important, because we can later retrieve this id stored in the <li> to use with our findContact() prototype method to locate an entire Contact object.
+
+
   });
   contactsList.html(htmlForContactInfo);
 };
@@ -82,6 +86,10 @@ function showContact(contactId) {
 
 function attachContactListeners() {
   $("ul#contacts").on("click", "li", function() {
+    // First we call jQuery's on() method upon the parent element that we want to attach the event listener to. In this case, ul#contacts. on() takes two arguments:
+// The first is the type of the event we're listening for. In our case, we want code to trigger when <li>s are clicked, but we could specify other events like hover or keyup as well.
+// The second is the child element that should trigger this event listener. In this case, it's all <li>s inside ul#contacts.
+// If we load our page, populate a few contacts with our form, and click their <li>s, we'll see the id of the clicked <li> logged in the console!
     showContact(this.id);
   });
   $("#buttons").on("click", ".deleteButton", function() {
@@ -92,6 +100,7 @@ function attachContactListeners() {
 };
 $(document).ready(function(){
   attachContactListeners();
+  // We'll then call ^this function as soon as the document is ready:
   $("form#new-contact").submit(function(event){
     event.preventDefault();
     var inputtedFirstName = $("input#new-first-name").val();
