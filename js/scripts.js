@@ -68,7 +68,16 @@ var addressBook = new AddressBook();
       });
       contactsList.html(htmlForContactInfo);
     };
+
+    function attachContactListeners() {
+      $("ul#contacts").on("click", "li", function() {
+    console.log("The id of this <li> is " + this.id + ".");
+    // If we load our page, populate a few contacts with our form, and click their <li>s, we'll see the id of the clicked <li> logged in the console!
+  });
+
+};
 $(document).ready(function(){
+  attachContactListeners();
   $("form#new-contact").submit(function(event){
     event.preventDefault();
     var inputtedFirstName = $("input#new-first-name").val();
