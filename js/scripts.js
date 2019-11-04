@@ -60,21 +60,35 @@ var addressBook = new AddressBook();
 
 
 
-    function displayContactDetails(addressBookToDisplay) {
-      var contactsList = $("ul#contacts");
-      var htmlForContactInfo = "";
-      addressBookToDisplay.contacts.forEach(function(contact) {
-        htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
-      });
-      contactsList.html(htmlForContactInfo);
-    };
-
-    function attachContactListeners() {
-      $("ul#contacts").on("click", "li", function() {
-    console.log("The id of this <li> is " + this.id + ".");
-    // If we load our page, populate a few contacts with our form, and click their <li>s, we'll see the id of the clicked <li> logged in the console!
+function displayContactDetails(addressBookToDisplay) {
+  var contactsList = $("ul#contacts");
+  var htmlForContactInfo = "";
+  addressBookToDisplay.contacts.forEach(function(contact) {
+    htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
   });
+  contactsList.html(htmlForContactInfo);
+};
 
+function showContact(contactId) {
+  var contact = addressBook.findContact(contactId);
+  $("#show-contact").show();
+  $(".first-name").html(contact.firstName);
+  $(".last-name").html(contact.lastName);
+  $(".phone-number").html(contact.phoneNumber);
+  var buttons = $("#buttons");
+  buttons.empty();
+  buttons.append("<button class='deleteButton' id=" +  + contact.id + ">Delete</button>");
+}
+
+function attachContactListeners() {
+  $("ul#contacts").on("click", "li", function() {
+    showContact(this.id);
+  });
+  $("#buttons").on("click", ".deleteButton", function() {
+    addressBook.deleteContact(this.id);
+    $("#show-contact").fadeOut();
+    displayContactDetails(addressBook);
+  });
 };
 $(document).ready(function(){
   attachContactListeners();
