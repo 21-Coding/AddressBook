@@ -66,7 +66,7 @@ function displayContactDetails(addressBookToDisplay) {
   var htmlForContactInfo = "";
   addressBookToDisplay.contacts.forEach(function(contact) {
     htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
-    // ^^^^We assign each Contact to a <li> with a dynamic id matching the Contact's id property. This is very important, because we can later retrieve this id stored in the <li> to use with our findContact() prototype method to locate an entire Contact object.
+    // ^^^^We assign each Contact to a <li> with a dynamic id matching the Contact's id property. This is very important, because we can later retrieve this id stored in the <li> to use with our findContact() prototype method to locate an entire Contact object. We could've appended each Contact to the DOM one at a time, but that's inefficient. It's much faster to concatenate all Contacts inside <li>s first, then add them to the DOM in a single .html() call, like we do here.
 
 
   });
@@ -109,5 +109,6 @@ $(document).ready(function(){
     var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
+    // ^^^^^^Let's call this new method whenever we add a new Contact.
   })
 })
