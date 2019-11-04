@@ -58,6 +58,16 @@ function Contact(firstName, lastName, phoneNumber) {
 var addressBook = new AddressBook();
 // his is a global variable because it's declared at the 'top level' of our file.
 
+
+
+    function displayContactDetails(addressBookToDisplay) {
+      var contactsList = $("ul#contacts");
+      var htmlForContactInfo = "";
+      addressBookToDisplay.contacts.forEach(function(contact) {
+        htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
+      });
+      contactsList.html(htmlForContactInfo);
+    };
 $(document).ready(function(){
   $("form#new-contact").submit(function(event){
     event.preventDefault();
@@ -67,14 +77,5 @@ $(document).ready(function(){
     var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
-
-    function displayContactDetails(addressBookToDisplay) {
-      var contactsList = $("ul#contacts");
-      var htmlForContactInfo = "";
-      addressBookToDisplay.contacts.forEach(function(contact) {
-        htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
-      });
-      contactsList.html(htmlForContactInfo);
-};
   })
 })
