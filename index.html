@@ -20,7 +20,17 @@
     <input type="text" id="new-phone-number">
     <label for="email">Email</label>
     <input type="text" id="email">
+    <label for="address">Address</label>
+    <input type="text" id="add">
+
+    <div id="radio" class="form-check">
+
+    <input checked class="personal"type="radio" name="type" value="personal"> Personal<br>
+    <input class="work"type="radio" name="type" value="work"> Work<br>
+    <input class="school" type="radio" name="type" value="school"> School<br>
     <button type="submit">Add</button>
+  </div>
+
   </form>
 
   <h2>Contacts:</h2>
@@ -32,9 +42,17 @@
     <p>Last Name: <span class="last-name"></span></p>
     <p>Phone Number: <span class="phone-number"></span></p>
     <p>Email: <span class="email"></span></p>
-    <div id="buttons">
-    </div>
+    <p>Address: <span class="address"></span></p>
+    <p>Address Type: <span class="radioß"></span></p>
   </div>
 
   </body>
 </html>
+
+
+<!-- Add functionality to record and display a contact's email address. Done
+
+Add functionality to record and display a contact's physical address.
+
+Then, add functionality that allows a user to record multiple addresses (email or physical) for a single Contact, and what type each address is (ie: "work", "personal", etc.) (Hint: Address will need to be an object with multiple properties saved within the Contact object.)
+Remove any additional address fields when the form is submitted. (One way to do this would be to use the not() and remove() functions.) -->

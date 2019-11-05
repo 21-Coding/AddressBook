@@ -42,11 +42,13 @@ AddressBook.prototype.deleteContact = function(id) {
 // ^^^^It deletes the contact with a matching ID and then returns true because the operation was completed. (If there's no record with a matching id to delete, it returns false.)
 
 // Business Logic for Contacts
-function Contact(firstName, lastName, phoneNumber, email) {
+function Contact(firstName, lastName, phoneNumber, email, address, radio) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.phoneNumber = phoneNumber;
     this.email = email;
+    this.address = address;
+    this.radio = radio;
   }
 
   Contact.prototype.fullName = function() {
@@ -81,6 +83,8 @@ function showContact(contactId) {
   $(".last-name").html(contact.lastName);
   $(".phone-number").html(contact.phoneNumber);
   $(".email").html(contact.email);
+  $(".address").html(contact.address);
+  $(".radio").html(contact.radio);
   var buttons = $("#buttons");
   buttons.empty();
   buttons.append("<button class='deleteButton' id=" +  + contact.id + ">Delete</button>");
@@ -109,7 +113,9 @@ $(document).ready(function(){
     var inputtedLastName = $("input#new-last-name").val();
     var inputtedPhoneNumber = $("input#new-phone-number").val();
     var inputtedEmail = $("input#email").val();
-    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmail);
+    var inputtedAddress = $("input#address").val();
+    var radio = $("input[name=type]:checked").val();
+    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmail, inputtedAddress, radio);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
     // ^^^^^^Let's call this new method whenever we add a new Contact.
