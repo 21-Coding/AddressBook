@@ -39,7 +39,7 @@ AddressBook.prototype.deleteContact = function(id) {
   };
   return false;
 }
-// It deletes the contact with a matching ID and then returns true because the operation was completed. (If there's no record with a matching id to delete, it returns false.)
+// ^^^^It deletes the contact with a matching ID and then returns true because the operation was completed. (If there's no record with a matching id to delete, it returns false.)
 
 // Business Logic for Contacts
 function Contact(firstName, lastName, phoneNumber) {
