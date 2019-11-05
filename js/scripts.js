@@ -16,7 +16,7 @@ AddressBook.prototype.assignId = function() {
   this.currentId += 1;
   return this.currentId;
 }
-// This new method will increment the this.currentId property on the AddressBook object by 1 and return the updated value. This mimics a database by creating sequentially incrementing ID values which are never repeated (making them unique).
+// ^^^This new method will increment the this.currentId property on the AddressBook object by 1 and return the updated value. This mimics a database by creating sequentially incrementing ID values which are never repeated (making them unique).
 AddressBook.prototype.findContact = function(id) {
   for (var i=0; i< this.contacts.length; i++) {
     if (this.contacts[i]) {
@@ -27,7 +27,7 @@ AddressBook.prototype.findContact = function(id) {
     };
   return false;
 }
-// The method then loops through the AddressBook object's contacts array, checking each entry's id against the id provided to the findContact() method as an argument.When a match is found, the method returns the Contact object with that specific id.
+// ^^^The method then loops through the AddressBook object's contacts array, checking each entry's id against the id provided to the findContact() method as an argument.When a match is found, the method returns the Contact object with that specific id.
 AddressBook.prototype.deleteContact = function(id) {
   for (var i=0; i< this.contacts.length; i++) {
    if (this.contacts[i]) {
